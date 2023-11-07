@@ -1,6 +1,6 @@
 # EIDF Kubernetes Tutorial and Demos
 
-Welcome to an in-depth look at working with Docker and Kubernetes as part of the EIDF GPU Cluster transition guide. This repository serves as a complement to our [YouTube tutorial](Link-to-your-youtube-video), providing step-by-step walkthroughs for beginners and machine learning enthusiasts wanting to make the most of Docker and Kubernetes.
+Welcome to an in-depth look at working with Docker and Kubernetes as part of the EIDF GPU Cluster transition guide. This repository serves as a complement to our [YouTube tutorial](https://youtu.be/fzpPtnl7bn0), providing step-by-step walkthroughs for beginners and machine learning enthusiasts wanting to make the most of Docker and Kubernetes.
 
 ## Demos
 
