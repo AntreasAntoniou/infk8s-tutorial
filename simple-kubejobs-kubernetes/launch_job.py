@@ -4,11 +4,6 @@ import time
 from kubejobs.jobs import KubernetesJob, create_pvc
 from rich import print
 
-env_vars = {
-    "DATASET_DIR": "/data/",
-    "MODEL_DIR": "/data/model/",
-}
-
 # unique id generated using time
 
 unique_id = time.strftime("%Y%m%d%H%M%S")
@@ -17,6 +12,12 @@ unique_id = time.strftime("%Y%m%d%H%M%S")
 create_pvc(
     pvc_name="tutorial-pvc", storage="100Gi", access_modes="ReadWriteOnce"
 )
+
+env_vars = {
+    "DATASET_DIR": "/data/",
+    "MODEL_DIR": "/data/model/",
+}
+
 
 job = KubernetesJob(
     name=f"tutorial-node-{unique_id}",

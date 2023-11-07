@@ -2,7 +2,6 @@
 
 # Use the official Ubuntu runtime as a parent image
 FROM ubuntu:20.04
-
 # Update system
 RUN apt-get update
 
@@ -11,7 +10,10 @@ RUN apt-get install -y python3 pip
 RUN pip install rich
 
 # Add a script to the image
-COPY helloworld.py /
+RUN mkdir /app
+COPY helloworld.py /app/helloworld.py
+
+RUN chmod +x /app/helloworld.py
 
 # Run the script when the container launches
-CMD ["python3", "/helloworld.py"]
+CMD ["/bin/bash"]

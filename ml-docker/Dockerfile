@@ -52,7 +52,9 @@ RUN git config --global credential.helper store
 RUN mkdir /app/
 ADD requirements.txt /app/
 
-ADD simple-ml/ /app/simple-ml
+ADD simple-ml /app/simple-ml
+ADD setup.py /app/
+RUN echo y | pip install -r /app/requirements.txt
 RUN echo y | pip install /app/[dev]
 
 # Start from bash when the container launches
