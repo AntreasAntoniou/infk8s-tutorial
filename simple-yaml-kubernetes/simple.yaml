@@ -1,0 +1,54 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations: &id001
+    groups: evolvingfungus adm cdrom sudo dip plugdev lpadmin lxd sambashare docker
+    home: /home/evolvingfungus
+    shell: /bin/bash
+    username: evolvingfungus
+  name: tutorial-node-20231107075228
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      annotations: *id001
+    spec:
+      containers:
+        - args:
+            - python /app/simple-ml/run.py --seed=2306
+          command:
+            - /bin/bash
+            - -c
+            - --
+          env:
+            - name: DATASET_DIR
+              value: /data/
+            - name: MODEL_DIR
+              value: /data/model/
+          image: ghcr.io/antreasantoniou/simple-ml:latest
+          imagePullPolicy: Always
+          name: tutorial-node-20231107075228
+          resources:
+            limits:
+              cpu: 24
+              memory: 111G
+              nvidia.com/gpu: 1
+            requests:
+              cpu: 24
+              memory: 111G
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: dshm
+            - mountPath: /data
+              name: dataset-disk
+      nodeSelector:
+        nvidia.com/gpu.product: NVIDIA-A100-SXM4-40GB
+      restartPolicy: Never
+      volumes:
+        - emptyDir:
+            medium: Memory
+            sizeLimit: 111G
+          name: dshm
+        - name: dataset-disk
+          persistentVolumeClaim:
+            claimName: tutorial-pvc
